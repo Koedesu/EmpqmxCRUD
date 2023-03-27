@@ -1,6 +1,9 @@
 <?php
-
-$url_base="http://localhost/EmpqmxCRUD/"
+session_start();
+$url_base="http://localhost/EmpqmxCRUD/";
+if(!isset($_SESSION['usuario'])){
+  Header("Location:".$url_base."login.php");
+}
 
 ?>
 
@@ -41,7 +44,7 @@ $url_base="http://localhost/EmpqmxCRUD/"
               <a class="nav-link" href="<?php echo $url_base;?>secciones/almacen/">Almacen</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="#">Log Out</a>
+              <a class="nav-link" href="<?php echo $url_base;?>cerrar.php">Log Out</a>
           </li>
       </ul>
   </nav>

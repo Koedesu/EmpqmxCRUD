@@ -7,23 +7,23 @@ if($_POST){
     //METODO GET PARA MOSTRAR INFIORMACION
     $sentencia = $conn -> prepare("SELECT *, count(*) as n_usuarios 
     FROM `tbl_usuarios`
-    WHERE correo=:correo AND contra=:contra");
+    WHERE usuario=:usuario AND contra=:contra");
 
-    $correo = $_POST["correo"];
+    $usuario = $_POST["usuario"];
     $contra = $_POST["contra"];
 
-    $sentencia -> bindParam(":correo",$correo);
+    $sentencia -> bindParam(":usuario",$usuario);
     $sentencia -> bindParam(":contra",$contra);
 
     $sentencia -> execute();
     
     $registro = $sentencia -> fetch(PDO::FETCH_LAZY);
     if($registro["n_usuarios"]>0){
-      $_SESSION['correo']=$registro["correo"];
+      $_SESSION['usuario']=$registro["usuario"];
       $_SESSION['logueado']=true;
       Header("Location:index.php");
     } else{
-      $mensaje = "Correo o contraseña incorrectos";
+      $mensaje = "Usuario o contraseña incorrectos";
     }
 }
 ?>
@@ -72,9 +72,9 @@ if($_POST){
 
                 <form action="" method="post">
                     <div class="mb-3">
-                      <label for="correo" class="form-label">Correo:</label>
+                      <label for="usuario" class="form-label">Usuario:</label>
                       <input type="text"
-                        class="form-control" name="correo" id="correo" aria-describedby="helpId" placeholder="Escribe tu correo">
+                        class="form-control" name="usuario" id="usuario" aria-describedby="helpId" placeholder="Escribe tu usuario">
                     </div>
                     <div class="mb-3">
                       <label for="contra" class="form-label">Contraseña:</label>
