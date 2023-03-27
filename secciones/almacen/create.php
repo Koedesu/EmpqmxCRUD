@@ -24,9 +24,9 @@ if($_POST){
     $sentencia -> bindParam(":ubicacion",$ubicacion);
     $sentencia -> bindParam(":qr_code",$qr_code);
     $sentencia -> execute();
-    
+    $mensaje = "Registro Añadido";
 
-    Header("Location:index.php");
+    Header("Location:index.php?mensaje=".$mensaje);
 }
 ?>
 

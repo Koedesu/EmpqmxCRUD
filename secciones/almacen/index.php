@@ -74,8 +74,8 @@ include("../../templates/header.php");
                         <a href="<?php echo $registro['qr_code']; ?>"><?php echo $registro['numdepieza']; ?></a>
                         </td>
                         <td>
-                            <a class="btn btn-info" href="edit.php?txtID=<?php echo $registro['id']; ?>" role="button">Editar</a>
-                            <a class="btn btn-danger" href="javascript:borrar(<?php echo $registro['id']; ?>);" role="button">Eliminar</a>
+                            | <a class="btn btn-info" href="edit.php?txtID=<?php echo $registro['id']; ?>" role="button">Editar</a> |
+                            <a class="btn btn-danger" href="javascript:borrar(<?php echo $registro['id']; ?>);" role="button">Eliminar</a> |
                         </td>
                     </tr>
                     <?php } ?>    
