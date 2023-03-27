@@ -1,4 +1,6 @@
 <?php  
+session_start();
+
 if($_POST){
     include("./db.php");
 
@@ -15,11 +17,15 @@ if($_POST){
 
     $sentencia -> execute();
     
-    $lista_tbl_usuarios = $sentencia -> fetch(PDO::FETCH_LAZY);
-    print_r($lista_tbl_usuarios);
-
+    $registro = $sentencia -> fetch(PDO::FETCH_LAZY);
+    if($registro["n_usuarios"]>0){
+      $_SESSION['correo']=$registro["correo"];
+      $_SESSION['logueado']=true;
+      Header("Location:index.php");
+    } else{
+      $mensaje = "Correo o contraseña incorrectos";
+    }
 }
-
 ?>
 
 <!doctype html>
@@ -50,18 +56,29 @@ if($_POST){
         <div class="col-md-4"> <br>
           <div class="card">
             <div class="card-header">
-                Login
+                <h4>
+                  Inicia sesión
+                </h4>
             </div>
             <div class="card-body">
+              <?php if(isset($mensaje)){ ?>
+
+                <div class="alert alert-danger" role="alert">
+                  <strong><?php echo $mensaje; ?></strong>
+                </div>
+              <?php } ?>
+              
+
+
                 <form action="" method="post">
                     <div class="mb-3">
-                      <label for="correo" class="form-label">correo:</label>
+                      <label for="correo" class="form-label">Correo:</label>
                       <input type="text"
                         class="form-control" name="correo" id="correo" aria-describedby="helpId" placeholder="Escribe tu correo">
                     </div>
                     <div class="mb-3">
                       <label for="contra" class="form-label">Contraseña:</label>
-                      <input type="contra"
+                      <input type="password"
                         class="form-control" name="contra" id="contra" aria-describedby="helpId" placeholder="Escribe tu contraseña">
                     </div>
 
