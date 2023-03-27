@@ -14,12 +14,9 @@ if(isset($_GET['txtID'])){
   $numdepieza = $registro["numdepieza"];
   $cliente = $registro["cliente"];
   $cantidad = $registro["cantidad"];
-  $idubicacion = $registro["idubicacion"];
+  $ubicacion = $registro["ubicacion"];
   //$qr_code = $registro["qr_code"];
 
-  $sentencia = $conn -> prepare("SELECT * FROM `tbl_racks`");
-    $sentencia -> execute();
-    $lista_tbl_racks = $sentencia -> fetchAll(PDO::FETCH_ASSOC);
 }
 if($_POST){
   //Recolectamos los datos del metodo POST
@@ -27,14 +24,9 @@ if($_POST){
   $numdepieza=(isset($_POST["numdepieza"])?$_POST["numdepieza"]:"");
   $cliente=(isset($_POST["cliente"])?$_POST["cliente"]:"");
   $cantidad=(isset($_POST["cantidad"])?$_POST["cantidad"]:"");
-  $idubicacion=(isset($_POST["idubicacion"])?$_POST["idubicacion"]:"");
+  $ubicacion=(isset($_POST["ubicacion"])?$_POST["ubicacion"]:"");
 
-  foreach ($lista_tbl_racks as $registro) {
-    $nombrerack = $registro[rack];
-  }
-  
-
-  $qr_data = "# de Pieza: $numdepieza // Cliente: $cliente // Cantidad: $cantidad // Ubicacion: $nombrerack";
+  $qr_data = "# de Pieza: $numdepieza // Cliente: $cliente // Cantidad: $cantidad // Ubicacion: $ubicacion";
     $qr_code = 'https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=' . urlencode($qr_data);
 
     
@@ -43,19 +35,20 @@ if($_POST){
   $sentencia = $conn -> prepare("UPDATE tbl_almacen SET numdepieza= :numdepieza,
   cliente= :cliente,
   cantidad= :cantidad,
-  idubicacion= :idubicacion,
+  ubicacion= :ubicacion,
   qr_code=:qr_code
   WHERE id=:id");
   //Asignando los valores que vienen del moetodo POST
   $sentencia -> bindParam(":numdepieza",$numdepieza);
   $sentencia -> bindParam(":cliente",$cliente);
   $sentencia -> bindParam(":cantidad",$cantidad);
-  $sentencia -> bindParam(":idubicacion",$idubicacion);
+  $sentencia -> bindParam(":ubicacion",$ubicacion);
   $sentencia -> bindParam(":qr_code",$qr_code);
   $sentencia -> bindParam (":id",$txtID);
   $sentencia -> execute();
+  $mensaje = "Registro Actualizado";
 
-  Header("Location:index.php");
+  Header("Location:index.php?mensaje=".$mensaje);
 }
 ?>
 <?php 
@@ -99,15 +92,10 @@ include("../../templates/header.php");
     </div>
 
     <div class="mb-3">
-      <label for="idubicacion" class="form-label">Ubicacion:</label>
-      "<?php echo $idubicacion; ?>"
-      <select class="form-select form-select-sm" name="idubicacion" id="idubicacion">
-        <?php foreach ($lista_tbl_racks as $registro) { ?>
-            <option value="<?php echo $registro['id']?>">
-                <?php echo $registro['rack'] ?>
-            </option>
-            <?php } ?>
-      </select>
+      <label for="ubicacion" class="form-label">Ubicacion:</label>
+      <input type="text"
+        value= "<?php echo $ubicacion; ?>"
+        class="form-control" name="ubicacion" id="ubicacion" aria-describedby="helpId" placeholder="Ubicación:">
     </div>
 
     <button type="submit" class="btn btn-success">Actualizar</button> 

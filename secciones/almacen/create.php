@@ -6,18 +6,14 @@ if($_POST){
     $numdepieza=(isset($_POST["numdepieza"])?$_POST["numdepieza"]:"");
     $cliente=(isset($_POST["cliente"])?$_POST["cliente"]:"");
     $cantidad=(isset($_POST["cantidad"])?$_POST["cantidad"]:"");
-    $idubicacion=(isset($_POST["idubicacion"])?$_POST["idubicacion"]:"");
+    $ubicacion=(isset($_POST["ubicacion"])?$_POST["ubicacion"]:"");
 
-    foreach ($lista_tbl_racks as $registro) {
-        $nombrerack = $registro[rack];
-      }
-
-      $qr_data = "# de Pieza: $numdepieza // Cliente: $cliente // Cantidad: $cantidad // Ubicacion: $nombrerack";
+      $qr_data = "# de Pieza: $numdepieza // Cliente: $cliente // Cantidad: $cantidad // Ubicacion: $ubicacion";
     $qr_code = 'https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=' . urlencode($qr_data);
 
     //Preparar insercion de los datos
-    $sentencia = $conn -> prepare("INSERT INTO tbl_almacen(id,numdepieza,cliente,cantidad,idubicacion,qr_code)
-        VALUES (null, :numdepieza, :cliente, :cantidad, :idubicacion, :qr_code)");
+    $sentencia = $conn -> prepare("INSERT INTO tbl_almacen(id,numdepieza,cliente,cantidad,ubicacion,qr_code)
+        VALUES (null, :numdepieza, :cliente, :cantidad, :ubicacion, :qr_code)");
 
     
 
@@ -25,20 +21,19 @@ if($_POST){
     $sentencia -> bindParam(":numdepieza",$numdepieza);
     $sentencia -> bindParam(":cliente",$cliente);
     $sentencia -> bindParam(":cantidad",$cantidad);
-    $sentencia -> bindParam(":idubicacion",$idubicacion);
+    $sentencia -> bindParam(":ubicacion",$ubicacion);
     $sentencia -> bindParam(":qr_code",$qr_code);
     $sentencia -> execute();
     
 
     Header("Location:index.php");
 }
-$sentencia = $conn -> prepare("SELECT * FROM `tbl_racks`");
-$sentencia -> execute();
-$lista_tbl_racks = $sentencia -> fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 <?php 
 include("../../templates/header.php");
 ?>
+
 <br>
 
 <div class="card">
@@ -68,15 +63,9 @@ include("../../templates/header.php");
     </div>
 
     <div class="mb-3">
-    <label for="idubicacion" class="form-label">Ubicación:</label>
-    <select class="form-select form-select-sm" name="idubicacion" id="idubicacion">
-        <?php foreach ($lista_tbl_racks as $registro) { ?>
-            <option value="<?php echo $registro['id']; ?>">
-            <?php echo $registro['rack']; ?>
-          </option>
-            <?php } ?>
-
-        </select>
+      <label for="ubicacion" class="form-label">Ubicación:</label>
+      <input type="text"
+        class="form-control" name="ubicacion" id="ubicacion " aria-describedby="helpId" placeholder="Ubicacion:">
     </div>
 
     <button type="submit" class="btn btn-success">Agregar</button> 
