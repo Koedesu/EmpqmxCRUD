@@ -40,8 +40,22 @@ if($_POST){
   <!-- Bootstrap CSS v5.2.1 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 
 </head>
+<nav class="navbar navbar-expand-sm navbar-light bg-dark">
+    <a class="navbar-brand" style="color:#F53C14; padding-left: 20px" href="<?php echo $url_base;?>">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYCVAcaWeQeMKXPyOO6FaX6OXKEMbQzD-wMaZRrrE&s" alt="" width="40" height="40" class="d-inline-block align-text-center">
+      Empaquemex
+    </a>
+    <div class="collapse navbar-collapse"
+    id="navbarNav">
+    <ul class="navbar-nav">
+    </ul>
+    </div>
+</nav>
 
 <body>
   <header>

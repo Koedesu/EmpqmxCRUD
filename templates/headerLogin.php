@@ -65,19 +65,6 @@ if(!isset($_SESSION['usuario'])){
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYCVAcaWeQeMKXPyOO6FaX6OXKEMbQzD-wMaZRrrE&s" alt="" width="40" height="40" class="d-inline-block align-text-center">
       Empaquemex
     </a>
-    <div class="collapse navbar-collapse"
-    id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a href="<?php echo $url_base;?>secciones/almacen/" style="color:#FFFFFF" class="nav-link">
-          Almacen
-        </a>
-      </li>
-    </ul>
-    </div>
-    <div class="navbar-text">
-      <a href="<?php echo $url_base;?>cerrar.php" style="color:#FFFFFF; padding-right:20px">Cerrar Sesion</a>
-    </div>
 </nav>
 
   <main class="container">

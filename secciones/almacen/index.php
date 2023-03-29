@@ -70,7 +70,7 @@ include("../../templates/header.php");
                         <td><?php echo $registro['cantidad']; ?></td>
                         <td><?php echo $registro['ubicacion']; ?></td>
                         <td>
-                        <a target="_blank" download="prueba" href="<?php echo $registro['qr_code']; ?>"><?php echo "<img src='" . $registro['qr_code'] . "'>"; ?></a>
+                        <a target="_blank" href="<?php echo $registro['qr_code']; ?>"><?php echo "<img src='" . $registro['qr_code'] . "'>"; ?></a>
                         </td>
                         <td>
                             | <a class="btn btn-info" href="edit.php?txtID=<?php echo $registro['id']; ?>" role="button">Editar</a> |
