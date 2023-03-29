@@ -61,12 +61,11 @@ if($_POST){
   <header>
     <!-- place navbar here -->
   </header>
+  <br><br>
   <main class="container">
     <div class="row">
         <div class="col-md-4">
-          
         </div>
-        
         <div class="col-md-4"> <br>
           <div class="card">
             <div class="card-header">
@@ -75,6 +74,7 @@ if($_POST){
                 </h4>
             </div>
             <div class="card-body">
+              <img src="./banner-empaquemex.jpg" alt="">
               <?php if(isset($mensaje)){ ?>
 
                 <div class="alert alert-danger" role="alert">
@@ -82,8 +82,6 @@ if($_POST){
                 </div>
               <?php } ?>
               
-
-
                 <form action="" method="post">
                     <div class="mb-3">
                       <label for="usuario" class="form-label">Usuario:</label>

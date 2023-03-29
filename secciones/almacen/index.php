@@ -37,7 +37,7 @@ include("../../templates/header.php");
 </script>
 <?php } ?>
 
-<br>
+<br><br>
 <h4>Inventario Producción</h4>
 
 <div class="card">
@@ -48,14 +48,14 @@ include("../../templates/header.php");
     </div>
     <div class="card-body">
         <div class="table-responsive-sm">
-            <table class="table" id="tabla_id">
+            <table  class="table" id="tabla_id">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col"># de Pieza</th>
                         <th scope="col">Cliente</th>
                         <th scope="col">Cantidad</th>
-                        <th scope="col">Ubicación</th>
+                        <th scope="col">Rack</th>
                         <th scope="col">QR</th>
                         <th scope="col">Acciones</th>
                     </tr>
@@ -66,9 +66,9 @@ include("../../templates/header.php");
                     <tr class="">
                         <td scope="row"><?php echo $registro['id']; ?></td>
                         <td><?php echo $registro['numdepieza']; ?></td>
-                        <td><?php echo $registro['cliente']; ?></td>
+                        <td style="text-transform: capitalize" ><?php echo $registro['cliente']; ?></td>
                         <td><?php echo $registro['cantidad']; ?></td>
-                        <td><?php echo $registro['ubicacion']; ?></td>
+                        <td style="text-transform: capitalize"><?php echo $registro['ubicacion']; ?></td>
                         <td>
                         <a target="_blank" href="<?php echo $registro['qr_code']; ?>"><?php echo "<img src='" . $registro['qr_code'] . "'>"; ?></a>
                         </td>

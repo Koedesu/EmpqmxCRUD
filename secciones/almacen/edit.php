@@ -26,7 +26,7 @@ if($_POST){
   $cantidad=(isset($_POST["cantidad"])?$_POST["cantidad"]:"");
   $ubicacion=(isset($_POST["ubicacion"])?$_POST["ubicacion"]:"");
 
-  $qr_data = "# de Pieza: $numdepieza // Cliente: $cliente // Cantidad: $cantidad // Ubicacion: $ubicacion";
+  $qr_data = "# de Pieza: $numdepieza // Cliente: $cliente // Cantidad: $cantidad // Rack: $ubicacion";
     $qr_code = 'https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=' . urlencode($qr_data);
 
     
@@ -92,10 +92,10 @@ include("../../templates/header.php");
     </div>
 
     <div class="mb-3">
-      <label for="ubicacion" class="form-label">Ubicacion:</label>
+      <label for="ubicacion" class="form-label">Rack:</label>
       <input type="text"
         value= "<?php echo $ubicacion; ?>"
-        class="form-control" name="ubicacion" id="ubicacion" aria-describedby="helpId" placeholder="Ubicación:">
+        class="form-control" name="ubicacion" id="ubicacion" aria-describedby="helpId" placeholder="Rack:">
     </div>
 
     <button type="submit" class="btn btn-success">Actualizar</button> 
