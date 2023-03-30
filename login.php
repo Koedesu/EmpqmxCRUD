@@ -48,7 +48,7 @@ if($_POST){
 </head>
 <nav class="navbar navbar-expand-sm navbar-light bg-dark">
     <a class="navbar-brand" style="color:#F53C14; padding-left: 20px" href="<?php echo $url_base;?>">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYCVAcaWeQeMKXPyOO6FaX6OXKEMbQzD-wMaZRrrE&s" alt="" width="40" height="40" class="d-inline-block align-text-center">
+      <img src="resources/logo.png" alt="" width="40" height="40" class="d-inline-block align-text-center">
       Empaquemex
     </a>
     <div class="collapse navbar-collapse"
@@ -75,7 +75,7 @@ if($_POST){
                 </h4>
             </div>
             <div class="card-body">
-              <img src="./banner-empaquemex.jpg" style="display:block; margin: 0 auto" alt="">
+              <img src="resources/banner-empaquemex.jpg" style="display:block; margin: 0 auto" alt="">
               <?php if(isset($mensaje)){ ?>
 
                 <div class="alert alert-danger" role="alert">
