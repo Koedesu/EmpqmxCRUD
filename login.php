@@ -74,7 +74,7 @@ if($_POST){
                 </h4>
             </div>
             <div class="card-body">
-              <img src="./banner-empaquemex.jpg" alt="">
+              <img src="./banner-empaquemex.jpg" style="display:block; margin: 0 auto" alt="">
               <?php if(isset($mensaje)){ ?>
 
                 <div class="alert alert-danger" role="alert">
