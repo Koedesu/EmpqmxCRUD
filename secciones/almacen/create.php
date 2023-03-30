@@ -63,7 +63,7 @@ include("../../templates/header.php");
     </div>
 
     <div class="mb-3">
-      <label for="ubicacion" class="form-label">Rack::</label>
+      <label for="ubicacion" class="form-label">Rack:</label>
       <input type="text"
         class="form-control" name="ubicacion" id="ubicacion " aria-describedby="helpId" placeholder="Rack:">
     </div>

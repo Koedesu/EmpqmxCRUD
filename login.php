@@ -1,5 +1,6 @@
 <?php  
 session_start();
+$url_base="http://localhost/EmpqmxCRUD/";
 
 if($_POST){
     include("./db.php");

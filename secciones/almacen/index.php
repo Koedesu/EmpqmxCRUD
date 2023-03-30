@@ -11,7 +11,7 @@ if(isset($_GET['txtID'])){
     $sentencia = $conn -> prepare("DELETE FROM tbl_almacen WHERE id=:id");
     $sentencia -> bindParam(":id",$txtID);
     $sentencia -> execute();
-    $mensaje = "Registro elminado";
+    $mensaje = "Registro eliminado";
     Header("Location:index.php?mensaje=".$mensaje);
 
 }
