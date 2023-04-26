@@ -10,12 +10,13 @@ if($_POST){
     FROM `tbl_usuarios`
     WHERE usuario=:usuario AND contra=:contra");
 
+    
+
     $usuario = $_POST["usuario"];
     $contra = $_POST["contra"];
 
     $sentencia -> bindParam(":usuario",$usuario);
     $sentencia -> bindParam(":contra",$contra);
-
     $sentencia -> execute();
     
     $registro = $sentencia -> fetch(PDO::FETCH_LAZY);
@@ -44,9 +45,10 @@ if($_POST){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-
 </head>
-<nav class="navbar navbar-expand-sm navbar-light bg-dark">
+
+
+<!-- <nav class="navbar navbar-expand-sm navbar-light bg-dark">
     <a class="navbar-brand" style="color:#F53C14; padding-left: 20px" href="<?php echo $url_base;?>">
       <img src="resources/logo.png" alt="" width="40" height="40" class="d-inline-block align-text-center">
       Empaquemex
@@ -56,13 +58,20 @@ if($_POST){
     <ul class="navbar-nav">
     </ul>
     </div>
-</nav>
+</nav> -->
 
 <body>
   <header>
     <!-- place navbar here -->
+    <nav class="navbar fixed-top navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-semibold fs-4" style="color:#F53C14   " href="<?php echo $url_base;?>">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYCVAcaWeQeMKXPyOO6FaX6OXKEMbQzD-wMaZRrrE&s" alt="" width="40" height="40" class="d-inline-block align-text-center">
+            Empaquemex</a>
+        </div>
+    </nav>
   </header>
-  <br><br>
+  <br><br><br><br>
   <main class="container">
     <div class="row">
         <div class="col-md-4">

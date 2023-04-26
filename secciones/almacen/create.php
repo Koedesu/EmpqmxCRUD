@@ -34,8 +34,7 @@ if($_POST){
 include("../../templates/header.php");
 ?>
 
-<br>
-
+<br><br><br><br><br>
 <div class="card">
     <div class="card-header">
         <h4># de Pieza</h4>
@@ -45,30 +44,30 @@ include("../../templates/header.php");
     <form action="" method="post" enctype="multipart/form-data">
 
     <div class="mb-3">
-      <label for="numdepieza" class="form-label"># de Pieza:</label>
+      <label for="numdepieza" class="form-label"><strong># de Pieza:</strong></label>
       <input type="text"
         class="form-control" name="numdepieza" id="numdepieza" aria-describedby="helpId" placeholder="# de Pieza:">
     </div>
 
     <div class="mb-3">
-      <label for="cliente" class="form-label">Cliente:</label>
+      <label for="cliente" class="form-label"><strong>Cliente:</strong></label>
       <input type="text"
         class="form-control" name="cliente" id="cliente " aria-describedby="helpId" placeholder="Cliente:">
     </div>
 
     <div class="mb-3">
-      <label for="cantidad" class="form-label">Cantidad:</label>
+      <label for="cantidad" class="form-label"><strong>Cantidad:</strong></label>
       <input type="text"
         class="form-control" name="cantidad" id="cantidad " aria-describedby="helpId" placeholder="Cantidad:">
     </div>
 
     <div class="mb-3">
-      <label for="ubicacion" class="form-label">Rack:</label>
+      <label for="ubicacion" class="form-label"><strong>Rack:</strong></label>
       <input type="text"
         class="form-control" name="ubicacion" id="ubicacion " aria-describedby="helpId" placeholder="Rack:">
     </div>
 
-    <button type="submit" class="btn btn-success">Agregar</button> 
+    <button type="submit" class="btn btn-success"><strong>Agregar</strong></button> 
     <a name="btn-cancelar" id="btn-cancelar" class="btn btn-danger" href="index.php" role="button">Cancelar</a>
 
     </form>

@@ -15,7 +15,7 @@ if(isset($_GET['txtID'])){
   $cliente = $registro["cliente"];
   $cantidad = $registro["cantidad"];
   $ubicacion = $registro["ubicacion"];
-  //$qr_code = $registro["qr_code"];
+  $precio = $registro["precio"];
 
 }
 if($_POST){
@@ -25,10 +25,7 @@ if($_POST){
   $cliente=(isset($_POST["cliente"])?$_POST["cliente"]:"");
   $cantidad=(isset($_POST["cantidad"])?$_POST["cantidad"]:"");
   $ubicacion=(isset($_POST["ubicacion"])?$_POST["ubicacion"]:"");
-
-  $qr_data = "# de Pieza: $numdepieza // Cliente: $cliente // Cantidad: $cantidad // Rack: $ubicacion";
-    $qr_code = 'https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=' . urlencode($qr_data);
-
+  $precio=(isset($_POST["precio"])?$_POST["precio"]:"");
     
 
   //Preparar insercion de los datos
@@ -36,14 +33,14 @@ if($_POST){
   cliente= :cliente,
   cantidad= :cantidad,
   ubicacion= :ubicacion,
-  qr_code=:qr_code
+  precio=:precio
   WHERE id=:id");
   //Asignando los valores que vienen del moetodo POST
   $sentencia -> bindParam(":numdepieza",$numdepieza);
   $sentencia -> bindParam(":cliente",$cliente);
   $sentencia -> bindParam(":cantidad",$cantidad);
   $sentencia -> bindParam(":ubicacion",$ubicacion);
-  $sentencia -> bindParam(":qr_code",$qr_code);
+  $sentencia -> bindParam(":precio",$precio);
   $sentencia -> bindParam (":id",$txtID);
   $sentencia -> execute();
   $mensaje = "Registro Actualizado";
@@ -57,7 +54,7 @@ include("../../templates/header.php");
 <br><br><br><br><br>
 <div class="card">
     <div class="card-header">
-    <h4>Actualizar: <?php echo $numdepieza; ?></h4>
+        <h4>Actualizar: <?php echo $numdepieza; ?></h4>
     </div>
     <div class="card-body">
 
@@ -74,28 +71,28 @@ include("../../templates/header.php");
       <label for="numdepieza" class="form-label"><strong># de Pieza:</strong></label>
       <input type="text"
         value= "<?php echo $numdepieza; ?>"
-        class="form-control" name="numdepieza" id="numdepieza" aria-describedby="helpId" placeholder="# de Pieza:">
+        class="form-control" readonly name="numdepieza" name="numdepieza" id="numdepieza" aria-describedby="helpId" placeholder="# de Pieza:">
     </div>
 
     <div class="mb-3">
       <label for="cliente" class="form-label"><strong>Cliente:</strong></label>
       <input type="text"
         value= "<?php echo $cliente; ?>"
-        class="form-control" name="cliente" id="cliente" aria-describedby="helpId" placeholder="Cliente:">
+        class="form-control" readonly name="cliente" name="cliente" id="cliente" aria-describedby="helpId" placeholder="Cliente:">
     </div>
 
     <div class="mb-3">
       <label for="cantidad" class="form-label"><strong>Cantidad:</strong></label>
       <input type="text"
         value= "<?php echo $cantidad; ?>"
-        class="form-control" name="cantidad" id="cantidad" aria-describedby="helpId" placeholder="Cantidad:">
+        class="form-control" readonly name="cantidad" name="cantidad" id="cantidad" aria-describedby="helpId" placeholder="Cantidad:">
     </div>
 
     <div class="mb-3">
-      <label for="ubicacion" class="form-label"><strong>Rack:</strong></label>
+      <label for="precio" class="form-label"><strong>Precio:</strong></label>
       <input type="text"
-        value= "<?php echo $ubicacion; ?>"
-        class="form-control" name="ubicacion" id="ubicacion" aria-describedby="helpId" placeholder="Rack:">
+        value= "<?php echo $precio; ?>"
+        class="form-control" name="precio" id="precio" aria-describedby="helpId" placeholder="Precio:">
     </div>
 
     <button type="submit" class="btn btn-success">Actualizar</button> 

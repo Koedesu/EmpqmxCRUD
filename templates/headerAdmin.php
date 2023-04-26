@@ -1,8 +1,8 @@
 <?php
 session_start();
 $url_base="http://localhost/EmpqmxCRUD/";
-if(!isset($_SESSION['usuario'])){
-  Header("Location:".$url_base."login.php");
+if($_SESSION['rol_id'] != 1){
+  Header("Location:".$url_base);
 }
 ?>
 
