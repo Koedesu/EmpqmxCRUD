@@ -8,39 +8,46 @@ if(isset($_GET['txtID'])){
   $sentencia = $conn -> prepare("SELECT * FROM tbl_almacen WHERE id=:id");
   $sentencia -> bindParam(":id",$txtID);
   $sentencia -> execute();
-
   $registro = $sentencia -> fetch(PDO::FETCH_LAZY);
 
   $numdepieza = $registro["numdepieza"];
-  $cliente = $registro["cliente"];
+  $idcliente = $registro["idcliente"];
   $cantidad = $registro["cantidad"];
   $ubicacion = $registro["ubicacion"];
   //$qr_code = $registro["qr_code"];
+
+  $sentencia = $conn -> prepare("SELECT * FROM `tbl_clientes`");
+  $sentencia -> execute();
+  $lista_tbl_clientes = $sentencia -> fetchAll(PDO::FETCH_ASSOC);
+
+  $sentencia = $conn -> prepare("SELECT * FROM `tbl_racks`");
+  $sentencia -> execute();
+  $lista_tbl_racks = $sentencia -> fetchAll(PDO::FETCH_ASSOC);
 
 }
 if($_POST){
   //Recolectamos los datos del metodo POST
   $txtID = (isset($_POST['txtID']))?$_POST['txtID']:"";
   $numdepieza=(isset($_POST["numdepieza"])?$_POST["numdepieza"]:"");
-  $cliente=(isset($_POST["cliente"])?$_POST["cliente"]:"");
+  $idcliente=(isset($_POST["idcliente"])?$_POST["idcliente"]:"");
   $cantidad=(isset($_POST["cantidad"])?$_POST["cantidad"]:"");
   $ubicacion=(isset($_POST["ubicacion"])?$_POST["ubicacion"]:"");
 
-  $qr_data = "# de Pieza: $numdepieza // Cliente: $cliente // Cantidad: $cantidad // Rack: $ubicacion";
+  $qr_data = "# de Pieza: $numdepieza // Cliente: $idcliente // Cantidad: $cantidad // Rack: $ubicacion";
     $qr_code = 'https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=' . urlencode($qr_data);
 
     
 
   //Preparar insercion de los datos
   $sentencia = $conn -> prepare("UPDATE tbl_almacen SET numdepieza= :numdepieza,
-  cliente= :cliente,
+  idcliente= :idcliente,
   cantidad= :cantidad,
   ubicacion= :ubicacion,
   qr_code=:qr_code
   WHERE id=:id");
   //Asignando los valores que vienen del moetodo POST
   $sentencia -> bindParam(":numdepieza",$numdepieza);
-  $sentencia -> bindParam(":cliente",$cliente);
+  $sentencia -> bindParam(":idcliente",$idcliente);
   $sentencia -> bindParam(":cantidad",$cantidad);
   $sentencia -> bindParam(":ubicacion",$ubicacion);
   $sentencia -> bindParam(":qr_code",$qr_code);
@@ -78,10 +85,16 @@ include("../../templates/header.php");
     </div>
 
     <div class="mb-3">
-      <label for="cliente" class="form-label"><strong>Cliente:</strong></label>
-      <input type="text"
-        value= "<?php echo $cliente; ?>"
-        class="form-control" name="cliente" id="cliente" aria-describedby="helpId" placeholder="Cliente:">
+      <label for="idcliente" class="form-label"><strong>Cliente:</strong></label>
+      <?php echo $idcliente; ?>
+      <select class="form-select form-select-sm" name="idcliente" id="idcliente">
+        <?php foreach ($lista_tbl_clientes as $registro) { ?>
+
+          <option <?php echo ($idcliente==$registro['id'])?"selected":"" ?> value="<?php echo $registro['id']?>"> 
+          <?php echo $registro['nombrecliente'] ?>
+        </option>
+          <?php } ?>
+      </select>
     </div>
 
     <div class="mb-3">
@@ -93,9 +106,15 @@ include("../../templates/header.php");
 
     <div class="mb-3">
       <label for="ubicacion" class="form-label"><strong>Rack:</strong></label>
-      <input type="text"
-        value= "<?php echo $ubicacion; ?>"
-        class="form-control" name="ubicacion" id="ubicacion" aria-describedby="helpId" placeholder="Rack:">
+      <?php echo $ubicacion; ?>
+      <select class="form-select form-select-sm" name="ubicacion" id="ubicacion">
+        <?php foreach ($lista_tbl_racks as $registro) { ?>
+
+          <option <?php echo ($ubicacion==$registro['id'])?"selected":"" ?> value="<?php echo $registro['id']?>"> 
+          <?php echo $registro['rack'] ?>
+        </option>
+          <?php } ?>
+      </select>
     </div>
 
     <button type="submit" class="btn btn-success">Actualizar</button> 

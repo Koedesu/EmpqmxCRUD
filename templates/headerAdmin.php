@@ -1,9 +1,12 @@
 <?php
 session_start();
 $url_base="http://localhost/EmpqmxCRUD/";
-if($_SESSION['rol_id'] != 1){
-  Header("Location:".$url_base);
-}
+//$url_base="http://reyempaquemex.infinityfreeapp.com/";
+// if ($_SESSION['rol_id'] != 1) {
+//   // Si el usuario no tiene el rol adecuado, redirigir a otra página
+//   header('Location:'.$url_base);
+//   exit;
+// }
 ?>
 
 <!doctype html>

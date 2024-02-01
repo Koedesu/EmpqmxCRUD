@@ -34,7 +34,7 @@ if(isset($_GET['txtID'])){
 ?>
 
 <?php
-include("../../templates/header.php");
+include("../../templates/headerAdmin.php");
 ?>
 
 <?php

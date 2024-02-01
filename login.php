@@ -1,7 +1,7 @@
 <?php  
 session_start();
 $url_base="http://localhost/EmpqmxCRUD/";
-
+//$url_base="http://reyempaquemex.infinityfreeapp.com/";
 if($_POST){
     include("./db.php");
 

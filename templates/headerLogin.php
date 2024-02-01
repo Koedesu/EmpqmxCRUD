@@ -1,6 +1,7 @@
 <?php
 session_start();
 $url_base="http://localhost/EmpqmxCRUD/";
+//$url_base="http://reyempaquemex.infinityfreeapp.com/";
 if(!isset($_SESSION['usuario'])){
   Header("Location:".$url_base."login.php");
 }

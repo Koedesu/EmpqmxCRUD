@@ -1,0 +1,8 @@
+.footer-container {
+    background-color: #f8f9fa; /* Color de fondo del pie de página, puedes cambiarlo según tus preferencias */
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }

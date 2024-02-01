@@ -1,5 +1,9 @@
+<head>
+<link rel="stylesheet" href=style.css>
+</head>
 </main>
-  <footer>
+
+  <footer class="footer-container">
     <!-- place footer here -->
     Created by: Marco Aurelio Valadez Guzman
   </footer>

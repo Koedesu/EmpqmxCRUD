@@ -1,6 +1,10 @@
 <?php
 include("../../db.php");
 
+$sentencia = $conn -> prepare("SELECT * FROM `tbl_roles`");
+$sentencia -> execute();
+$lista_tbl_roles = $sentencia -> fetchAll(PDO::FETCH_ASSOC);
+
 if(isset($_GET['txtID'])){
 
   $txtID = (isset($_GET['txtID']))?$_GET['txtID']:"";
@@ -15,7 +19,7 @@ if(isset($_GET['txtID'])){
   $snombre = $registro["snombre"];
   $papellido = $registro["papellido"];
   $sapellido = $registro["sapellido"];
-  $rol = $registro["rol"];
+  $rol_id = $registro["rol_id"];
   //$qr_code = $registro["qr_code"];
 
 }
@@ -26,7 +30,7 @@ if($_POST){
   $snombre=(isset($_POST["snombre"])?$_POST["snombre"]:"");
   $papellido=(isset($_POST["papellido"])?$_POST["papellido"]:"");
   $sapellido=(isset($_POST["sapellido"])?$_POST["sapellido"]:"");
-  $rol=(isset($_POST["rol"])?$_POST["rol"]:"");
+  $rol_id=(isset($_POST["rol_id"])?$_POST["rol_id"]:"");
     
 
   //Preparar insercion de los datos
@@ -34,14 +38,14 @@ if($_POST){
   snombre= :snombre,
   papellido= :papellido,
   sapellido= :sapellido,
-  rol=:rol
+  rol_id=:rol_id
   WHERE id=:id");
   //Asignando los valores que vienen del moetodo POST
   $sentencia -> bindParam(":usuario",$usuario);
   $sentencia -> bindParam(":snombre",$snombre);
   $sentencia -> bindParam(":papellido",$papellido);
   $sentencia -> bindParam(":sapellido",$sapellido);
-  $sentencia -> bindParam(":rol",$rol);
+  $sentencia -> bindParam(":rol_id",$rol_id);
   $sentencia -> bindParam (":id",$txtID);
   $sentencia -> execute();
   $mensaje = "Registro Actualizado";
@@ -96,11 +100,29 @@ include("../../templates/header.php");
         class="form-control" name="sapellido" id="sapellido" aria-describedby="helpId" placeholder="Apellido Materno">
     </div>
 
+    <div class="m-3">
+      <label for="rol_rol" class="form-label">Rol:</label>
+      "<?php echo $rol_id; ?>"
+      <select name="rol_id" id="rol_id" class="form-select form-select-sm">
+        <?php foreach ($lista_tbl_roles as $registro) { ?>
+
+          <option <?php echo ($rol_id== $registro['id'])?"selected":"";?> value="<?php echo $registro['id'] ?>">
+          <?php echo $registro['roles'] ?>
+          </option>
+          <?php } ?>
+      </select>
+    </div>
+
     <div class="mb-3">
-      <label for="rol" class="form-label"><strong>Rol:</strong></label>
-      <input type="text"
-        value= "<?php echo $rol; ?>"
-        class="form-control" name="rol" id="rol " aria-describedby="helpId" placeholder="Rol:">
+      <label for="rol_id" class="form-label"><strong>Rol:</strong></label>
+
+      <select class='form-select form-select-sm' name="rol_id" id="rol_id">
+      <?php foreach ($lista_tbl_roles as $registro) { ?>
+        <option value="<?php echo $registro['id'] ?>"> 
+        <?php echo $registro['roles'] ?> 
+      </option>
+        <?php } ?>
+      </select>
     </div>
 
     <button type="submit" class="btn btn-success">Actualizar</button> 
